@@ -19,7 +19,7 @@ ENV PATH /opt/kafka-manager-${KM_VERSION}/bin:$PATH
 COPY ./scripts/start-kafka-manager.sh /start-kafka-manager.sh
 ENTRYPOINT ["/start-kafka-manager.sh"]
 
-COPY ./image/conf/application.conf /opt/kafka-manager-1.3.3.0/conf/application.conf
+COPY ./conf/application.conf /opt/kafka-manager-1.3.3.0/conf/application.conf
 VOLUME ["/opt/kafka-manager-1.3.3.0/conf"]
 
 EXPOSE 9000
