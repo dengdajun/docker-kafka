@@ -12,7 +12,7 @@ services:
     ports:
       - '9092:9092'
     links:
-      - zookeeper:zk
+      - zookeeper
     env_file:
         - ./kafka/config/kafka.env
   kafka-manager:
