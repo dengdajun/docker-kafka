@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
-if [[ $KM_USERNAME != ''  && $KM_PASSWORD != '' ]]; then
-    sed -i.bak '/^basicAuthentication/d' /kafka-manager-${KM_VERSION}/conf/application.conf
-    echo 'basicAuthentication.enabled=true' >> /kafka-manager-${KM_VERSION}/conf/application.conf
-    echo "basicAuthentication.username=${KM_USERNAME}" >> /kafka-manager-${KM_VERSION}/conf/application.conf
-    echo "basicAuthentication.password=${KM_PASSWORD}" >> /kafka-manager-${KM_VERSION}/conf/application.conf
-    echo 'basicAuthentication.realm="Kafka-Manager"' >> /kafka-manager-${KM_VERSION}/conf/application.conf
+if [ "$1" = 'kafka-manager' ]; then
+
+    # sed -i -r 's|#zookeeper.connect=localhost:2181|zookeeper.connect=zookeeper:2181|g' /opt/confluent-1.0.1/etc/kafka-rest/kafka-rest.properties
+
+    exec "$@"
 fi
 
-exec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"
+exec "$@"
