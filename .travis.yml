@@ -9,22 +9,20 @@ branches:
   only:
   - master
 
+before_install:
+  - docker build -t sky233/kafka ./kafka
+  - docker build -t sky233/kafka-manager ./kafka-manager
+  - docker images
+
+script: echo 'test'
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
   # KAFKA
-  - export KAFKA_TAG=0.11.0.0
-  - export KAFKA=sky233/kafka
-  - docker build -t $KAFKA ./kafka
-  - docker tag $KAFKA $KAFKA:$KAFKA_TAG
-  - docker push $KAFKA
-
+  - docker push sky233/kafka
   # KAFKA_MANAGER
-  - export KAFKA_MANAGER_TAG=latest
-  - export KAFKA_MANAGER=sky233/kafka-manager
-  - docker build -t $KAFKA_MANAGER ./kafka-manager
-  - docker tag $KAFKA_MANAGER $KAFKA:$KAFKA_MANAGER_TAG
-  - docker push $KAFKA_MANAGER
+  - docker push sky233/kafka-manager
 
 
