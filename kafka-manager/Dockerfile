@@ -3,7 +3,7 @@ FROM hseeberger/scala-sbt
 MAINTAINER sky233
 
 ENV ZK_HOSTS=localhost:2181 \
-    KM_VERSION=1.3.3.0
+    KM_VERSION=1.2.7
 
 RUN mkdir -p /tmp && \
     cd /tmp && \
@@ -21,9 +21,9 @@ RUN chmod a+x /start-kafka-manager.sh
 
 ENTRYPOINT ["/start-kafka-manager.sh"]
 
-COPY ./config/application.conf /opt/kafka-manager-1.3.3.0/conf/application.conf
-VOLUME ["/opt/kafka-manager-1.3.3.0/conf"]
+COPY ./config/application.conf /opt/kafka-manager-1.2.7/conf/application.conf
+VOLUME ["/opt/kafka-manager-1.2.7/conf"]
 
 EXPOSE 9000
 
-CMD ["kafka-manager","-Dconfig.file=/opt/kafka-manager-1.3.3.0/conf/application.conf"]
+CMD ["kafka-manager","-Dconfig.file=/opt/kafka-manager-1.2.7/conf/application.conf"]
